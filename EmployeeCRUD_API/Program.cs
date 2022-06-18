@@ -72,7 +72,9 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 
 
 var app = builder.Build();
-
+var path = Directory.GetCurrentDirectory();
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+loggerFactory.AddFile($"{path}\\Logs\\Log.txt");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
